@@ -6,7 +6,7 @@ Layered troubleshooting lab validating DNS, TLS, HTTP, edge behavior, and browse
 
 The purpose of this lab is to validate the request path step by step instead of assuming that a successful page load tells the whole story.
 
-This repo supports the broader **usdevlab** portfolio by documenting a practical workflow for:
+This repo supports the broader usdevlab portfolio by documenting a practical workflow for:
 
 - confirming DNS resolution  
 - inspecting HTTP response behavior  
@@ -28,25 +28,38 @@ The fastest path to clarity is:
 ## Lab Workflow
 
 ### 1. DNS Validation
-Use `dig` to confirm where the request begins and whether the domain resolves to the expected destination.
+Use dig to confirm where the request begins and whether the domain resolves to the expected destination.
 
 ### 2. HTTP and Edge Validation
-Use `curl` to inspect headers, status codes, redirects, and response metadata.
+Use curl to inspect headers, status codes, redirects, and response metadata.
 
 ### 3. TLS Validation
-Use `openssl s_client` to inspect certificate presentation, handshake behavior, and whether SNI changes the result.
+Use openssl s_client to inspect certificate presentation, handshake behavior, and whether SNI changes the result.
 
 ### 4. Browser Validation
 Use browser DevTools to confirm how the request behaves in a real client environment.
 
-## Core Commands
+## Core Commands and Sample Output
 
 ```bash
 # DNS
 dig usdevlab.online
 
+; <<>> DiG <<>> usdevlab.online
+;; ANSWER SECTION:
+usdevlab.online.   300   IN   A   172.67.172.231
+
 # HTTP / Edge
 curl -I https://usdevlab.online
 
+HTTP/2 200
+server: cloudflare
+cf-cache-status: HIT
+cf-ray: 86b123abcde12345-CDG
+
 # TLS (with SNI)
 openssl s_client -connect usdevlab.online:443 -servername usdevlab.online
+
+SSL handshake has read 3000 bytes and written 400 bytes
+Certificate chain
+Verify return code: 0 (ok)
