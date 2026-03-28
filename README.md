@@ -41,7 +41,6 @@ Use browser DevTools to confirm how the request behaves in a real client environ
 
 ## Core Commands and Sample Output
 
-```bash
 # DNS
 dig usdevlab.online
 
@@ -63,3 +62,5 @@ openssl s_client -connect usdevlab.online:443 -servername usdevlab.online
 SSL handshake has read 3000 bytes and written 400 bytes
 Certificate chain
 Verify return code: 0 (ok)
+
+
