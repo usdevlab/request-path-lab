@@ -43,7 +43,7 @@ Use browser DevTools to confirm how the request behaves in a real client environ
 
 Core Commands and Sample Output
 
-'''
+'''bash
 
 # DNS
 dig usdevlab.online
