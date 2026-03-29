@@ -181,6 +181,5 @@ It asks:
 Related Links
 	•	https://usdevlab.online
 	•	https://usdevlab.online/v2/labs.html
-	•	https://usdevlab.online/v2/docs.html
 	•	https://usdevlab.online/v2/case-study.html
-	•	https://github.com/usdevlab
+
