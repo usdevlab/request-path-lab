@@ -131,6 +131,40 @@ The issue is caused by missing or incorrect SNI during the TLS handshake. Proper
 
 ⸻
 
+Troubleshooting Scenario 3: Redirect / Origin Mismatch
+
+Issue
+
+A user reports that visiting a domain results in unexpected redirects or lands on the wrong page or service.
+
+Hypothesis
+
+The issue may be caused by misconfigured redirects at the edge, origin server behavior, or conflicting HTTP response rules.
+
+Validation Steps
+	1.	DNS
+Confirm the domain resolves to the expected destination and is routed through the correct edge provider.
+	2.	HTTP Request (Initial)
+Use curl with the -I flag to inspect response headers and identify redirect status codes such as 301 or 302.
+	3.	Follow Redirects
+Use curl with the -L flag to follow the full redirect chain and observe where the request ultimately resolves.
+	4.	Compare Edge vs Origin
+Check whether the redirect is being issued by the edge (e.g., Cloudflare) or the origin server by analyzing headers such as server and cf-ray.
+	5.	Browser Validation
+Use DevTools to inspect the network tab and confirm redirect behavior in a real client environment.
+
+Observations
+	•	Initial request returns a 301 or 302 redirect
+	•	Redirect chain leads to an unexpected destination
+	•	Response headers indicate whether the redirect originates from the edge or origin
+	•	Browser confirms consistent redirect behavior
+
+Conclusion
+
+The issue is caused by incorrect redirect configuration, either at the edge or origin. Fixing the redirect rules or origin configuration resolves the unexpected behavior.
+
+⸻
+
 Key Takeaway
 
 A good troubleshooting workflow does not stop at “the site loads.”
